@@ -41,6 +41,7 @@ gulp.task('styles', function() {
 gulp.task('js', function() {
 	return gulp.src([
 		'app/libs/jquery/dist/jquery.min.js',
+		'app/libs/underscore/underscore-min.js',
 		'app/js/common.js', // Always at the end
 		])
 	.pipe(concat('scripts.min.js'))
@@ -79,7 +80,8 @@ gulp.task('watch', ['build-html', 'styles', 'js', 'browser-sync'], function() {
 	gulp.watch('app/**/*.html', ['build-html']);
 	gulp.watch('app/'+syntax+'/**/*.'+syntax+'', ['styles']);
 	gulp.watch(['libs/**/*.js', 'app/js/common.js'], ['js']);
-	gulp.watch('app/*.html', browsersync.reload)
+	gulp.watch('app/*.html', browsersync.reload);
+	gulp.watch('app/css/*.css', browsersync.reload)
 });
 
 gulp.task('default', ['watch']);
